@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🔧 Mechanical Repair App
 
 A full-stack vehicle repair management system built with **React**, **Express**, **SQLite (better-sqlite3)**, and **TypeScript** throughout — with Docker Compose for containerised deployment.
@@ -236,7 +235,9 @@ docker-compose.yml
 | --------- | ---------------- | ----------------------------------- |
 | `PORT`    | `3001`           | Express server port                 |
 | `DB_PATH` | `../data/app.db` | Absolute path to the SQLite DB file |
+
 =======
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -279,15 +280,15 @@ export default defineConfig([
       // other options...
     },
   },
-])
+]);
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -308,6 +309,5 @@ export default defineConfig([
       // other options...
     },
   },
-])
+]);
 ```
->>>>>>> 44b36bd0c9216abec17dc78f782c8cebffaa19e6

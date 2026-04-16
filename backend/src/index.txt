@@ -1,0 +1,26 @@
+import express from "express";
+import cors from "cors";
+//import vehiclesRouter from "./api/vehicles";
+import vehiclesRouter from "./api/vehicles";
+import repairJobsRouter from "./api/repairJobs";
+import { initSchema } from "./db/schema";
+import { seedData } from "./db/seed";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/vehicles", vehiclesRouter);
+app.use("/api/repair-jobs", repairJobsRouter);
+
+app.get("/health", (_, res) => res.send("OK"));
+
+initSchema()
+    .then(seedData) // run seed after schema
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`🚀 Server running at http://localhost:${PORT}`);
+        });
+    });

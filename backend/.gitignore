@@ -76,3 +76,10 @@ tmp/
 temp/
 *.tgz
 *.log.gz
+# text files
+*.txt
+# notes md files
+map.md
+startup.md
+dockerstartup.md
+

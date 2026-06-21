@@ -5,6 +5,6 @@
 
 [[redirects]]
   from = "/api/*"
-    to = "${VITE_API_BASE}/api/:splat"
+    to = "${VITE_API_BASE}/:splat"
   status = 200
   force = true

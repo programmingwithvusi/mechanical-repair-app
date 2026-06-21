@@ -5,6 +5,6 @@
 
 [[redirects]]
    from = "/api/*"
-  to = "${BACKEND_URL}/api/:splat"
+  to = "${BACKEND_URL}/:splat"
   status = 200
   force = true

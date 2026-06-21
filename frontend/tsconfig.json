@@ -14,7 +14,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "rootDir": "../",
-    "outDir": "dist",
+    "outDir": "node_modules/dist",
     "paths": {
       "@shared/*": ["../shared/*"]
     }

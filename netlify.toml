@@ -1,11 +1,10 @@
 [build]
-    base = "frontend"
+  base = "frontend"
   command = "npm run build"
   publish = "frontend/dist"
-  functions = "netlify/functions"
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  to = "https://mechanical-repair-backend.onrender.com/api/:splat"
   status = 200
   force = true

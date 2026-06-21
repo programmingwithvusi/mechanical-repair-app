@@ -311,3 +311,47 @@ export default defineConfig([
   },
 ]);
 ```
+
+---
+
+## Deploying Docker images (Render / Fly / Railway)
+
+The GitHub Actions workflow publishes two images to GitHub Container Registry (GHCR):
+
+- `ghcr.io/<owner>/<repo>/backend:latest`
+- `ghcr.io/<owner>/<repo>/frontend:latest`
+
+Replace `<owner>/<repo>` with your GitHub repository path (for example `programmingwithvusi/mechanical-repair-app`).
+
+Render
+
+1. Create a new Web Service on Render and choose "Deploy from Dockerfile". Select the repo and the `backend` Dockerfile.
+2. In the service settings, you can point Render to the GHCR image instead of building from the repo. Use the image name above.
+3. If you want the container to have persistent storage for the SQLite file, create a Persistent Disk on Render and mount it at `/data` (or set `DB_PATH` to where you mount it).
+4. After deployment, set the frontend's `VITE_API_BASE` to the backend URL in your frontend hosting provider (Netlify/Vercel) or set it in the frontend build environment.
+
+Fly
+
+1. Create a Fly app and set the image to `ghcr.io/<owner>/<repo>/backend:latest`.
+2. Configure a volume for persistence (Fly volumes) and mount it to `/data` if you need to persist the SQLite DB across restarts.
+3. Set any required environment variables (PORT, DB_PATH) in the Fly app settings.
+
+Railway
+
+1. Create a new Service and choose "Deploy from Image". Enter the GHCR image name.
+2. Railway provides a persistent disk option (or you can attach a managed database). If you need persistent SQLite, create a persistent disk and mount it.
+3. Configure environment variables as needed.
+
+Notes & tips
+
+- Prefer using a managed Postgres for production (Supabase, Railway Managed Postgres, PlanetScale). The app already has `pg` in dependencies so migration later is straightforward.
+- Netlify/Vercel: set `VITE_API_BASE` in the site environment variables to the backend URL, then rebuild the frontend.
+- If you deploy the backend as a container with a persistent disk, set `DB_PATH=/data/app.db` (or similar) so the DB survives restarts.
+- For quick demos you can deploy without persistence (the app will seed a copy of the DB at build time); for real data use a persistent disk or managed DB.
+
+Example: quickly run the backend container locally
+
+```powershell
+docker run -p 3001:3001 ghcr.io/<owner>/<repo>/backend:latest
+# then visit http://localhost:3001/health
+```

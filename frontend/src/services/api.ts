@@ -1,11 +1,15 @@
+/// <reference types="vite/client" />
 import type { Vehicle, RepairJob, ApiResponse } from "@shared/models";
 
-const BASE = "/api";
+// Use Vite env variable VITE_API_BASE when provided (e.g. https://api.example.com),
+// otherwise fall back to the relative /api for same-origin or Netlify rewrites.
+const BASE = import.meta.env.VITE_API_BASE ?? "/api";
 
 async function get<T>(path: string): Promise<T> {
     const res = await fetch(`${BASE}${path}`);
     const json: ApiResponse<T> = await res.json();
     if (json.error) throw new Error(json.error);
+
     return json.data;
 }
 

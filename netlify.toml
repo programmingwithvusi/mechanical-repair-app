@@ -2,7 +2,7 @@
   base = "frontend"
   command = "npm run build"
   functions = "./netlify/functions"
-  publish = "frontend/dist"
+  publish = "dist"
 
 
 [[redirects]]

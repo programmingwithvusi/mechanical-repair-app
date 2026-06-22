@@ -5,15 +5,15 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     environment:
-      PORT: 3001
+      PORT: 10000
       DB_PATH: /data/app.db
     volumes:
       - sqlite_data:/data          # persists the DB file across restarts
     ports:
-      - "3001:3001"                # exposed for direct API access / debugging
+      - "10000:10000"                # exposed for direct API access / debugging
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:3001/health"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:10000/health"]
       interval: 10s
       timeout: 5s
       retries: 3

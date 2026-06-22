@@ -5,6 +5,6 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "${BACKEND_URL}/:splat"
+  to = "https://mechanical-repair-app.onrender.com/:splat"
   status = 200
   force = true

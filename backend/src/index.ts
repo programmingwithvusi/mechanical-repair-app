@@ -6,7 +6,12 @@ import repairJobRoutes from "./api/repairJobs";
 const app = express();
 const PORT = process.env.PORT ?? 10000;
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://mechanical-repair-app.netlify.app', // Replace with your exact Netlify domain
+    optionsSuccessStatus: 200
+};
+//app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // ─── Routes ───────────────────────────────────────────────────────────────────

@@ -1,0 +1,10 @@
+# Local Netlify folder
+.netlify
+.env
+map.md
+startup.md
+dockerstartup.md
+__docker-compose.txt
+__Dockerfile
+__.dockerignore
+__fDockerfile

@@ -10,6 +10,7 @@ const corsOptions = {
     origin: 'https://mechanical-repair-app.netlify.app', // Replace with your exact Netlify domain
     optionsSuccessStatus: 200
 };
+console.log("It works")
 //app.use(cors());
 app.use(cors(corsOptions));
 app.use(express.json());

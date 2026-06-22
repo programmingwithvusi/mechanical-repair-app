@@ -26,3 +26,10 @@ dist-ssr
 map.md
 startup.md
 dockerstartup.md
+
+startup.md
+dockerstartup.md
+__docker-compose.txt
+__Dockerfile
+__.dockerignore
+__fDockerfile

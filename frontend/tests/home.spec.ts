@@ -7,3 +7,13 @@ test('homepage loads and shows title', async ({ page }) => {
     await expect(page).toHaveTitle("Repair Shop");
     await expect(page.locator('h1')).toContainText('Welcome to Mechanical Repair');
 });
+
+test('user can add a repair job', async ({ page }) => {
+    await page.goto('/repair-jobs');
+    await page.click('text=+ Add Repair Job');
+    await page.fill('#vehicleId', '5');
+    await page.fill('#description', 'Change spark plugs');
+    await page.fill('#cost', '450');
+    await page.click('text=Save Repair Job');
+    await expect(page.locator('text=Change Spark plugs')).toBeVisible();
+});

@@ -16,16 +16,16 @@ export default defineConfig({
             name: 'Chromium',
             use: { ...devices['Desktop Chrome'] },
         },
-
-        {
-            name: 'Firefox',
-            use: { ...devices['Desktop Firefox'] },
-        },
-        {
-            name: 'WebKit',
-            use: { ...devices['Desktop Safari'] },
-        },
-
+        /*
+                {
+                    name: 'Firefox',
+                    use: { ...devices['Desktop Firefox'] },
+                },
+                {
+                    name: 'WebKit',
+                    use: { ...devices['Desktop Safari'] },
+                },
+        */
     ],
     webServer: {
         command: 'npm run dev',

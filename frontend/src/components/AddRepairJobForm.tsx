@@ -100,7 +100,7 @@ export function AddRepairJobForm({ onCreated }: Props) {
               <div className="field">
                 <label htmlFor="make">Vehicle ID</label>
                 <input
-                  id="vehivleId"
+                  id="vehicleId"
                   name="vehicleId"
                   type="text"
                   placeholder="e.g. 1, 2, 3…"

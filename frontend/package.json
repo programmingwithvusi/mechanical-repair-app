@@ -8,9 +8,11 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --reporter=html",
+    "test:e2e:headed": "playwright test --headed",
     "test:e2e:report": "playwright show-report",
-     "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "test:trace": "npx playwright test --trace on"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

@@ -9,8 +9,6 @@ async function get<T>(path: string): Promise<T> {
     const res = await fetch(`${BASE}${path}`);
     const json: ApiResponse<T> = await res.json();
     if (json.error) throw new Error(json.error);
-    console.log("return data:", json.data)
-    console.log("return data:", json.error)
     return json.data;
 }
 

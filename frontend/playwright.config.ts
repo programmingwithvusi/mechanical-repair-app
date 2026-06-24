@@ -8,24 +8,25 @@ export default defineConfig({
     use: {
         baseURL: 'http://localhost:3002', // Vite default dev server
         trace: 'on-first-retry',
-        video: 'retain-on-failure',
+        video: 'on',
+        //video: 'retain-on-failure',
         screenshot: 'only-on-failure',
     },
     projects: [
+
         {
             name: 'Chromium',
             use: { ...devices['Desktop Chrome'] },
         },
-        /*
-                {
-                    name: 'Firefox',
-                    use: { ...devices['Desktop Firefox'] },
-                },
-                {
-                    name: 'WebKit',
-                    use: { ...devices['Desktop Safari'] },
-                },
-        */
+
+        {
+            use: { ...devices['Desktop Firefox'] },
+            name: 'Firefox',
+        },
+        {
+            name: 'WebKit',
+            use: { ...devices['Desktop Safari'] },
+        },
     ],
     webServer: {
         command: 'npm run dev',

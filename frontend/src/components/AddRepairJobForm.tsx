@@ -86,7 +86,11 @@ export function AddRepairJobForm({ onCreated }: Props) {
   return (
     <div className="add-form-wrapper">
       {!open ? (
-        <button className="btn-add" onClick={() => setOpen(true)}>
+        <button
+          data-testid="add-repair"
+          className="btn-add"
+          onClick={() => setOpen(true)}
+        >
           + Add Repair Job
         </button>
       ) : (

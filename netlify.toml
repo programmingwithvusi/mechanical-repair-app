@@ -14,7 +14,7 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://mechanical-repair-app.onrender.com/:splat"
+  to = "${VITE_API_BASE}/:splat"
   status = 200
   force = true
 

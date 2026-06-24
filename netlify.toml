@@ -6,9 +6,12 @@
 [[plugins]]
   package = "@netlify/plugin-playwright"
 
+# Route for Playwright report
 [[redirects]]
   from = "/qa"
   to = "/playwright-report/index.html"
+
+[[redirects]]
   from = "/api/*"
   to = "https://mechanical-repair-app.onrender.com/:splat"
   status = 200

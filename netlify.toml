@@ -10,6 +10,7 @@
 [[redirects]]
   from = "/qa"
   to = "/playwright-report/index.html"
+  status = 200
 
 [[redirects]]
   from = "/api/*"

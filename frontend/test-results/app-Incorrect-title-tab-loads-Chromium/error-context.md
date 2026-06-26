@@ -20,7 +20,7 @@ Timeout:  5000ms
 
 Call log:
   - Expect "toHaveTitle" with timeout 5000ms
-    13 × unexpected value "Repair Shop"
+    11 × unexpected value "Repair Shop"
 
 ```
 

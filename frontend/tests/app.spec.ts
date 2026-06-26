@@ -1,7 +1,7 @@
 // tests/app.spec.ts
 import { test, expect } from '@playwright/test'
 
-//const url = "http://localhost:3002";
+const url = 'http://localhost:4173' //|| 'http://localhost:3002';
 
 /*
 test.beforeEach(async ({ page }) => {
@@ -28,11 +28,11 @@ test('correct title tab loads', async ({ page }) => {
 */
 
 test('correct ttile tab loads', async ({ page }) => {
-    await page.goto('/');
+    await page.goto(url);
     await page.waitForLoadState('networkidle');
     await page.goto('/repair-jobs'); // ← client-side navigation now works
     await page.waitForLoadState('networkidle');
-    await expect(page).toHaveTitle("Vehicles");
+    await expect(page).toHaveTitle("Vehicle Repairs");
 });
 /*
 test('Incorrect title tab loads', async ({ page }) => {

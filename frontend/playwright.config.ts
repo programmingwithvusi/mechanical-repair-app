@@ -1,27 +1,26 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const isCI = !!process.env.CI;
+
 export default defineConfig({
     testDir: './tests',
     timeout: 30 * 1000,
     retries: 1,
     reporter: [['list'], ['html']],
     use: {
-        baseURL: 'http://localhost:3002', // Vite default dev server
+        baseURL: isCI ? 'http://localhost:4173' : 'http://localhost:3002',
         trace: 'on-first-retry',
         video: 'on',
-        //video: 'retain-on-failure',
         screenshot: 'only-on-failure',
     },
     projects: [
-
         {
             name: 'Chromium',
             use: { ...devices['Desktop Chrome'] },
         },
-
         {
-            use: { ...devices['Desktop Firefox'] },
             name: 'Firefox',
+            use: { ...devices['Desktop Firefox'] },
         },
         {
             name: 'WebKit',
@@ -29,10 +28,12 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'npm run dev -- --host',
-        port: 3002,
-        reuseExistingServer: !process.env.CI,
-        timeout: 120 * 1500, // give CI more time
+        // In CI: serve the built dist/ via preview
+        // Locally: use dev server
+        command: isCI ? 'npm run preview' : 'npm run dev -- --host',
+        port: isCI ? 4173 : 3002,
+        reuseExistingServer: !isCI,
+        timeout: 120 * 1000,
         stdout: 'pipe',
         stderr: 'pipe',
     },

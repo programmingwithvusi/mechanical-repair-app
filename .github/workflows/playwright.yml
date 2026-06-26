@@ -19,41 +19,27 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install --workspaces
-
       - name: Install native build tools
         run: sudo apt-get install -y python3 make g++
+     
       - name: Install backend dependencies
         run: npm ci
         working-directory: backend
 
-      - name: Install wait-on
-        run: npm install -g wait-on
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: frontend
       - name: Start backend server
         run: |
           npm run dev > /tmp/backend.log 2>&1 &
           echo "Backend PID: $!"
         working-directory: backend
 
-      - name: Wait for backend
-        run: |
-          sleep 30
-          echo "=== Backend log ==="
-          cat /tmp/backend.log
-          echo "=== Port check ==="
-          ss -tlnp | grep 3001 || echo "Nothing listening on port 3001"
-          echo "=== Process check ==="
-          ps aux | grep node | grep -v grep || echo "No node process running"
-     
       - name: Wait for backend to be ready
         run: npx wait-on tcp:3001 --timeout 30000
-
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         working-directory: frontend
-      - name: Run Playwright tests
-        run: npm run test:e2e --workspace frontend
       - name: Run E2E tests
         run: npm run test:e2e
         working-directory: frontend

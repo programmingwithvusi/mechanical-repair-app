@@ -27,9 +27,18 @@ jobs:
         working-directory: backend
 
       - name: Start backend server
-        run: npm run dev &
+        run: |
+          npm run dev > /tmp/backend.log 2>&1 &
+          echo "Backend PID: $!"
         working-directory: backend
 
+      - name: Wait for backend
+        run: |
+          sleep 15
+          echo "=== Backend log ==="
+          cat /tmp/backend.log
+          echo "=== Port check ==="
+          netstat -tlnp | grep 3001 || echo "Nothing on port 3001"
       - name: Wait for backend to be ready
         run: npx wait-on http://localhost:3001/api/health --timeout 30000
 

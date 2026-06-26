@@ -14,12 +14,14 @@ app.use(cors());
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// ─── Health check ─────────────────────────────────────────────────────────────
+app.get("/health", (_req, res) => res.json({ status: "ok" }));
+
+
 // ─── Routes ───────────────────────────────────────────────────────────────────
 app.use("/api/vehicles", vehicleRoutes);
 app.use("/api/repair-jobs", repairJobRoutes);
 
-// ─── Health check ─────────────────────────────────────────────────────────────
-app.get("/health", (_req, res) => res.json({ status: "ok" }));
 
 app.listen(PORT, () => {
     console.log(`Backend running on http://localhost:${PORT}`);

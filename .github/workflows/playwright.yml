@@ -43,8 +43,9 @@ jobs:
           ss -tlnp | grep 3001 || echo "Nothing listening on port 3001"
           echo "=== Process check ==="
           ps aux | grep node | grep -v grep || echo "No node process running"
+     
       - name: Wait for backend to be ready
-        run: npx wait-on http://localhost:3001/api/health --timeout 30000
+        run: npx wait-on tcp:3001 --timeout 30000
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps

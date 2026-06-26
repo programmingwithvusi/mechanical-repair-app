@@ -29,7 +29,7 @@ test('correct title tab loads', async ({ page }) => {
 
 test('correct ttile tab loads', async ({ page }) => {
     await page.goto('/repair-jobs');
-    // console.log(page)
+    await page.waitForLoadState('networkidle');
     await expect(page).toHaveTitle("Repair Shop");
 });
 /*

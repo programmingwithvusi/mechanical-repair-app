@@ -2,10 +2,11 @@ import { test, expect } from '@playwright/test';
 
 //const url = "http://localhost:3002";
 
-test('homepage loads and shows title', async ({ page }) => {
-    await page.goto("/Mechanical Repair App/i");
-    await expect(page).toHaveTitle("Repair Shop");
-    await expect(page.locator('h1')).toContainText('Welcome to Mechanical Repair');
+test('shows correct title and add repair job', async ({ page }) => {
+    await page.goto('/repair-jobs');
+    await expect(page).toHaveTitle('Repair Shop');
+    await expect(page.locator('h1')).toContainText('Vehicle Repairs');
+    // await expect(page.locator('h1')).toContainText('Welcome to Mechanical Repair');
 });
 
 test('user can add a repair job', async ({ page }) => {

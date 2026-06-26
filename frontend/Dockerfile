@@ -20,4 +20,4 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Custom nginx config — proxies /api to backend container
 COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 3000
+EXPOSE 3002

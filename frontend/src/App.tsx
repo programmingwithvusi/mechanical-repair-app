@@ -28,9 +28,7 @@ export default function App() {
           </NavLink>
         </div>
       </nav>
-      <header>
-        <h1>Welcome to Mechanical Repair</h1>
-      </header>
+
       <main className="main">
         <Routes>
           <Route path="/" element={<Navigate to="/vehicles" replace />} />

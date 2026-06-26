@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import type { RepairJob } from '@shared/models';
 import { repairJobService } from '../services/api';
 import { RepairJobCard } from '../components/RepairJobCard';
+
 import { AddRepairJobForm } from '../components/AddRepairJobForm';
+import AddPageTitle from '../components/AddPageTitle';
 
 export function RepairJobsPage() {
   const [jobs, setJobs] = useState<RepairJob[]>([]);
@@ -29,10 +31,11 @@ export function RepairJobsPage() {
   if (loading) return <p>Loading repair jobs…</p>;
   if (error) return <p>Error: {error}</p>;
 
+  //*<h1>Vehicles</h1>*/}
   return (
     <div className="page">
       <div className="page-header">
-        <h1>Vehicles</h1>
+        <AddPageTitle title="Vehicle Repairs" />
         <AddRepairJobForm onCreated={handleCreated} />
       </div>
       {jobs.length === 0 ? (

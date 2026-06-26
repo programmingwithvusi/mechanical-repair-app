@@ -32,7 +32,7 @@ export default defineConfig({
         command: 'npm run dev -- --host',
         port: 3002,
         reuseExistingServer: !process.env.CI,
-        timeout: 180 * 1500, // give CI more time
+        timeout: 120 * 1500, // give CI more time
         stdout: 'pipe',
         stderr: 'pipe',
     },

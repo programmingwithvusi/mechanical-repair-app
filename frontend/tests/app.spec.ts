@@ -28,7 +28,7 @@ test('correct title tab loads', async ({ page }) => {
 */
 
 test('correct ttile tab loads', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/repair-jobs');
     // console.log(page)
     await expect(page).toHaveTitle("Repair Shop");
 });

@@ -26,6 +26,8 @@ jobs:
         run: npm ci
         working-directory: backend
 
+      - name: Install wait-on
+        run: npm install -g wait-on
       - name: Start backend server
         run: |
           npm run dev > /tmp/backend.log 2>&1 &

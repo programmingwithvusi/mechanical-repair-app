@@ -29,9 +29,11 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'npm run dev',
+        command: 'npm run dev -- --host',
         port: 3002,
         reuseExistingServer: !process.env.CI,
         timeout: 180 * 1500, // give CI more time
+        stdout: 'pipe',
+        stderr: 'pipe',
     },
 });

@@ -1,10 +1,10 @@
 [build]
   base = "frontend"
-  command = "npm run build && npm run test:e2e:report"
+  command = "npm install -D @netlify/plugin-playwright && npm run build && npm run test:e2e:report"
   publish = "dist"
 
 [[plugins]]
-  package = "npm install -D @netlify/plugin-playwright"
+  package = "@netlify/plugin-playwright"
 
 # Route for Playwright report
 [[redirects]]

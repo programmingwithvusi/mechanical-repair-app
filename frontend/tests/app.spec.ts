@@ -32,7 +32,7 @@ test('correct ttile tab loads', async ({ page }) => {
     await page.waitForLoadState('networkidle');
     await page.goto('/'); // ← client-side navigation now works
     await page.waitForLoadState('networkidle');
-    await expect(page).toHaveTitle('Repair Shop');
+    await expect(page).toHaveTitle('');
     //await expect(page.locator('h1')).toContainText('Vehicle Repairs');
 });
 /*

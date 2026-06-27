@@ -8,7 +8,7 @@ export default defineConfig({
     retries: 1,
     reporter: [['list'], ['html']],
     use: {
-        baseURL: isCI ? 'http://localhost:4173' : 'http://localhost:3002',
+        baseURL: isCI ? 'http://localhost:3002' : 'http://localhost:4173',
         trace: 'on-first-retry',
         video: 'on',
         screenshot: 'only-on-failure',
@@ -31,7 +31,7 @@ export default defineConfig({
         // In CI: serve the built dist/ via preview
         // Locally: use dev server
         command: isCI ? 'npm run preview' : 'npm run dev -- --host',
-        port: isCI ? 4173 : 3002,
+        port: isCI ? 3002 : 4173,
         reuseExistingServer: !isCI,
         timeout: 120 * 1000,
         stdout: 'pipe',

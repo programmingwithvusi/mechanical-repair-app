@@ -5,7 +5,7 @@ const isCI = !!process.env.CI;
 export default defineConfig({
     testDir: './tests',
     timeout: 30 * 1000,
-    retries: 5,
+    retries: 1,
     reporter: [['list'], ['html']],
     use: {
         baseURL: isCI ? 'http://localhost:4173' : 'http://localhost:3002',

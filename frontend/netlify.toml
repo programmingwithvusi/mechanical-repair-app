@@ -1,13 +1,16 @@
 [build]
   base = "frontend"
-  command = "npm run test:e2e && npm run build"
+  command = "npm run build && npm run test:e2e"
   publish = "dist"
 
 [build.environment]
   VITE_API_URL = "https://mechanical-repair-app.onrender.com"
 
 [[plugins]]
-  package = "@netlify/plugin-playwright"
+  package = "netlify/plugin-playwright"
+
+[context.production.environment]
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/qa"

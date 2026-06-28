@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const isCI = !!process.env.CI;
+//const isCI = !!process.env.CI;
 
 export default defineConfig({
     testDir: './tests',
@@ -8,7 +8,7 @@ export default defineConfig({
     retries: 1,
     reporter: [['list'], ['html']],
     use: {
-        baseURL: isCI ? 'http://localhost:4173' : 'http://localhost:3002',
+        baseURL: 'http://localhost:3002',
         trace: 'on-first-retry',
         video: 'on',
         screenshot: 'only-on-failure',
@@ -30,9 +30,9 @@ export default defineConfig({
     webServer: {
         // In CI: serve the built dist/ via preview
         // Locally: use dev server
-        command: isCI ? 'npm run preview' : 'npm run dev -- --host',
-        port: isCI ? 4173 : 3002,
-        reuseExistingServer: !isCI,
+        command: 'npm run dev -- --host',
+        port: 3002,
+        reuseExistingServer: !process.env.CI,
         timeout: 120 * 1000,
         stdout: 'pipe',
         stderr: 'pipe',

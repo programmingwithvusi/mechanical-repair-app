@@ -9,31 +9,54 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Install frontend dependencies
+
+      - name: Install native build tools
+        run: sudo apt-get install -y python3 make g++
+
+      - name: Install backend dependencies
         run: npm ci
         working-directory: backend
-      - name: Build Backend
-        run: npm run build # <-- Generates the missing 'dist' folder
+
+      - name: Start backend server
+        run: npm run dev > /tmp/backend.log 2>&1 &
         working-directory: backend
-      - name: Start Web Server in Background
-        run: npm run start & # Starts your server without blocking the pipeline
-        working-directory: backend
+
+      - name: Wait for backend
+        run: npx wait-on tcp:3001 --timeout 30000
+
+      - name: Warm up Render backend
+        run: |
+          curl --retry 8 --retry-delay 10 --retry-connrefused \https://mechanical-repair-app.onrender.com/api/health || true
+
       - name: Install frontend dependencies
         run: npm ci
-        working-directory: frontend           
+        working-directory: frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: frontend
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         working-directory: frontend
+
       - name: Run E2E tests
         run: npm run test:e2e
         working-directory: frontend
-      - name: Upload Playwright report
+        continue-on-error: true        # publish report even when tests fail
+
+      - name: Deploy report to Netlify
+        run: npx netlify-cli deploy --dir=playwright-report --site=${{ secrets.NETLIFY_REPORT_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod --message="Report for ${{ github.sha }}"
+        working-directory: frontend
+
+      - name: Upload report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:

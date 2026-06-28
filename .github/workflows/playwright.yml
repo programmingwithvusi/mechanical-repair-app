@@ -22,9 +22,9 @@ jobs:
            
       - name: Start Web Server in Background
         run: npm run start & # Starts your server without blocking the pipeline
-        working-directory: frontend
+        working-directory: ./backend
       - name: Wait for server to be ready
-        run: npx wait-on http://localhost:3002 # Ensures the server is up before testing
+        run: npx wait-on http://localhost:3001 # Ensures the server is up before testing
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         working-directory: frontend

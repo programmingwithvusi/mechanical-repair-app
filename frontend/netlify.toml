@@ -7,7 +7,7 @@
   VITE_API_URL = "https://mechanical-repair-app.onrender.com"
 
 [context.production.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "24"
 
 [[redirects]]
   from = "/qa"

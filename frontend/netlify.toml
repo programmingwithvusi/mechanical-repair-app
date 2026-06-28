@@ -3,7 +3,6 @@
   command = "npm run build && npm run start"
   publish = "dist"
 
-[build]
   base = "frontend"
   command = "npm run build && npm run test:e2e"
   publish = "dist"

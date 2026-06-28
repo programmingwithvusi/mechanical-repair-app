@@ -9,7 +9,7 @@ test('correct ttile tab loads', async ({ page }) => {
 
 });
 /*
-test('Incorrect title tab loads', async ({ page }) => {
+test('repair job tab loads', async ({ page }) => {
     await page.goto('/repair-jobs');
     await page.waitForLoadState('networkidle');
    // await expect(page).toHaveTitle("Repair App");

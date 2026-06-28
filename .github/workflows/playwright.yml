@@ -19,15 +19,18 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci
         working-directory: frontend
-
+           
+      - name: Start Web Server in Background
+        run: npm run start & # Starts your server without blocking the pipeline
+        working-directory: frontend
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3002 # Ensures the server is up before testing
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         working-directory: frontend
-
       - name: Run E2E tests
         run: npm run test:e2e
         working-directory: frontend
-
       - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4

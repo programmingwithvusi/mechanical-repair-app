@@ -15,7 +15,7 @@ test('user can add a repair job', async ({ page }) => {
     await page.waitForLoadState('networkidle')
     //await page.waitForLoadState('networkidle');  // wait for API calls to complete
     await page.waitForSelector('text=+ Add Repair Job', { state: 'visible' }); // wait for button text to be visible
-    await page.click('text=+ Add Repair Job');
+    await page.getByRole('button', { name: '+ Add Repair Job' }).click();
 });
 /*
 test('repair job tab loads', async ({ page }) => {

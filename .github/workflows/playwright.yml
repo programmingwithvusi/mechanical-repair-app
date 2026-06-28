@@ -15,16 +15,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: backend
+      - name: Build Backend
+        run: npm run build # <-- Generates the missing 'dist' folder
+        working-directory: backend
+      - name: Start Web Server in Background
+        run: npm run start & # Starts your server without blocking the pipeline
+        working-directory: backend
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3001 # Ensures the server is up before testing
 
       - name: Install frontend dependencies
         run: npm ci
-        working-directory: frontend
-           
-      - name: Start Web Server in Background
-        run: npm run start & # Starts your server without blocking the pipeline
-        working-directory: ./backend
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:3001 # Ensures the server is up before testing
+        working-directory: frontend           
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         working-directory: frontend

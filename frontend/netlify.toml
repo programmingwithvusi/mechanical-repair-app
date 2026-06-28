@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
- command = "npx playwright install --with-deps && npm run build && npm run test:e2e"
+ command = "npx playwright install --with-deps chromium && npm run build && npm run test:e2e"
 publish = "dist"
 
 [build.environment]

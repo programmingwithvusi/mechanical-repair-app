@@ -1,7 +1,7 @@
 [build]
   base = "frontend"
-  command = "npm run build && npm run test:e2e"
-  publish = "dist"
+ command = "npx playwright install --with-deps && npm run build && npm run test:e2e"
+publish = "dist"
 
 [build.environment]
   VITE_API_URL = "https://mechanical-repair-app.onrender.com"

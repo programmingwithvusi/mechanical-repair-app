@@ -6,9 +6,6 @@
 [build.environment]
   VITE_API_URL = "https://mechanical-repair-app.onrender.com"
 
-[[plugins]]
-  package = "@netlify/plugin-playwright"
-
 [context.production.environment]
   NODE_VERSION = "18"
 

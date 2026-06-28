@@ -1,0 +1,21 @@
+[build]
+  base = "frontend"
+ command = "npx playwright install --with-deps chromium && npm run build && npm run test:e2e"
+publish = "dist"
+
+[build.environment]
+  VITE_API_URL = "https://mechanical-repair-app.onrender.com"
+
+[context.production.environment]
+  NODE_VERSION = "24"
+
+[[redirects]]
+  from = "/qa"
+  to = "/playwright-report/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://mechanical-repair-app.onrender.com/:splat"
+  status = 200
+  force = true

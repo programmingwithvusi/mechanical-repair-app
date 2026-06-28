@@ -27,13 +27,11 @@ jobs:
       - name: Start backend server
         run: npm run dev > /tmp/backend.log 2>&1 &
         working-directory: backend
-
-      - name: Wait for backend
-        run: npx wait-on tcp:3001 --timeout 30000
-
       - name: Warm up Render backend
         run: |
           curl --retry 8 --retry-delay 10 --retry-connrefused \https://mechanical-repair-app.onrender.com/api/health || true
+      - name: Wait for backend
+        run: npx wait-on tcp:3001 --timeout 30000
 
       - name: Install frontend dependencies
         run: npm ci

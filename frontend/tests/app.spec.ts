@@ -11,8 +11,8 @@ test('correct ttile tab loads', async ({ page }) => {
 
 test('user can add a repair job', async ({ page }) => {
     await page.goto('/'); // wait for API calls to complete
-    await page.waitForLoadState('networkidle')
     await page.goto('/repair-jobs');
+    await page.waitForLoadState('networkidle')
     //await page.waitForLoadState('networkidle');  // wait for API calls to complete
     await page.waitForSelector('text=+ Add Repair Job', { state: 'visible' }); // wait for button text to be visible
     await page.click('text=+ Add Repair Job');

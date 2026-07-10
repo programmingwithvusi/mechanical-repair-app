@@ -51,7 +51,7 @@ jobs:
         continue-on-error: true        # publish report even when tests fail
 
       - name: Deploy report to Netlify
-        run: npx netlify-cli deploy --dir=playwright-report --site=${{ secrets.NETLIFY_REPORT_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod --message="Report for ${{ github.sha }}"
+        run: npx netlify-cli deploy --no-build --dir=playwright-report --site=${{ secrets.NETLIFY_REPORT_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --prod --message="Report for ${{ github.sha }}"
         working-directory: frontend
 
       - name: Upload report artifact

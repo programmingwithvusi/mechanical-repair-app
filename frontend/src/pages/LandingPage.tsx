@@ -7,7 +7,9 @@ export default function LandingPage() {
   return (
     <div className="page" style={{ textAlign: 'center', padding: '4rem 1rem' }}>
       <h1>🔧 Repair Shop</h1>
-      <p>Manage vehicles and repair jobs in one place.</p>
+      <p>
+        Manage vehicles and repair jobs in one place. Our passion is to fix cars
+      </p>
       {isAuthenticated ? (
         <Link to="/vehicles">Go to Vehicles</Link>
       ) : (
